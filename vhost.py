@@ -1,4 +1,7 @@
 import sys;
+from datetime import datetime;
+import time;
+__author__ = "Phlyper";
 
 hosts = {"host":{"all":[], "one":""}, "alias":{"all":[], "one":""}};
 
@@ -17,7 +20,6 @@ def main():
 	address = input("saisir le nom des adresses ip?\n");
 	if not len(address):
 		address = "127.0.0.10";
-	
 	port = input("saisir le port utiliser?\n");
 	if not len(port):
 		port = "80";
@@ -75,7 +77,6 @@ def main():
 	ServerAdmin webmaster@{sn}
 	ServerName {sn}
 	ServerAlias {sa}
-
 	<Directory \"{dr}\">
 		DirectoryIndex index.php
 		Options Indexes FollowSymLinks MultiViews
@@ -92,7 +93,6 @@ def main():
 			Allow from all
 		</IfDefine>
 	</Directory>
-
 	ErrorLog \"c:/wamp/logs/{host}-apache_error.log\"
 	LogLevel warn
 	CustomLog \"c:/wamp/logs/{host}-access.log\" combined
@@ -105,8 +105,8 @@ def main():
 {0}
 """.format(hosts["host"]["one"]);
 	
-	print('Generation de vhost');
-	print('Code generated for Apache 2.2.x and Apache 2.4.x');
+	print("Generation de vhost");
+	print("Code generated for Apache 2.2.x and Apache 2.4.x");
 	print("-" * 60);
 	print(ligne1);
 	print("-" * 60);
@@ -118,4 +118,10 @@ def main():
 	print("-" * 60);
 
 if __name__ == "__main__":
+	time1, timec1 = datetime.now(), time.clock();
 	main();
+	time2, timec2 = datetime.now(), time.clock();
+
+print("time1 = %s, timec1 = %0.8f secondes" % (time1, timec1));
+print("time2 = %s, timec2 = %0.8f secondes" % (time2, timec2));
+print("delay 1-2 = %s, %0.8f secondes" % (time2 - time1, timec2 - timec1));
