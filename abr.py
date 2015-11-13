@@ -2,7 +2,7 @@
 import sys, pickle;
 from datetime import datetime;
 import time, random;
-# pip install graphviz
+# pip install graphviz *** graphviz-0.4.2
 from graphviz import Digraph
 __author__ = "Phlyper";
 
@@ -525,4 +525,3 @@ if __name__ == "__main__":
 print("time1 = %s, timec1 = %0.8f secondes" % (time1, timec1));
 print("time2 = %s, timec2 = %0.8f secondes" % (time2, timec2));
 print("delay 1-2 = %s, %0.8f secondes" % (time2 - time1, timec2 - timec1));
-
