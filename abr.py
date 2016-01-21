@@ -102,13 +102,13 @@ def draw_arbre(abr = None, fils = None, pere = None, dot = None, kn = 0):
 	kn += 1;
 	if abr != None:
 		if abr["pere"] == None:
-			dot = Digraph(format = 'png', name = 'ABR', comment = 'The Round Table');
+			dot = Digraph(format = "png", name = "ABR", comment = "The Binary Search Tree");
 		if dot == None:
 			return;
 		
 		abr["kn"] = kn;
 		label = "A%d" % kn;
-		dot.node(label, "{<valeur> %s|{<fils_gauche> %s|<fils_droit> %s}}" % (abr["valeur"], abr["fils_gauche"]["valeur"] if abr["fils_gauche"] != None else None, abr["fils_droit"]["valeur"] if abr["fils_droit"] else None), shape = "record");
+		dot.node(label, "{<valeur> %s|{<fils_gauche> %s|<fils_droit> %s}}" % (abr["valeur"], abr["fils_gauche"]["valeur"] if abr["fils_gauche"] != None else None, abr["fils_droit"]["valeur"] if abr["fils_droit"] else None), shape = "Mrecord" if abr["pere"] == None else "record", fontsize="14");
 		if abr["pere"] != None:
 			label_pere = "A%d" % abr["pere"]["kn"];
 			label_pere = "%s%s" % (label_pere, ":fils_%s" % fils if fils != None else "");
@@ -119,11 +119,17 @@ def draw_arbre(abr = None, fils = None, pere = None, dot = None, kn = 0):
 		del abr["kn"];
 		
 		if abr["pere"] == None:
+			dot.body.append("\tlabel = \"ABR Arbre Binaire de Recherche - BST Binary Search Tree - Diagram drawn by PHLYPER\"");
+			dot.body.append("\tfontsize = 20");
 			print(dot.source);
-			print(dot.render('abr', view = True, cleanup = True));
+			print(dot.save("abr"));
+			print(dot.render("abr", view = True, cleanup = False));
+			# dot.engine("neato");
+			# dot.format("pdf");
+			# print(dot.render("abr", view = True, cleanup = False));
 	else:
 		label = "A%d" % kn;
-		dot.node(label, "None", style = "filled", fillcolor = "lightgrey");
+		dot.node(label, "None", style = "filled", fillcolor = "lightgrey", fontsize="12");
 		if pere != None:
 			label_pere = "A%d" % pere["kn"];
 			dot.edge(label_pere, label, constraint = "true", dir = "both", color = "blue");
