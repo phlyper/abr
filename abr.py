@@ -119,7 +119,7 @@ def draw_arbre(abr = None, fils = None, pere = None, dot = None, kn = 0):
 		del abr["kn"];
 		
 		if abr["pere"] == None:
-			dot.body.append("\tlabel = \"ABR Arbre Binaire de Recherche - BST Binary Search Tree - Diagram drawn by PHLYPER\"");
+			dot.body.append("\tlabel = \"ABR Arbre Binaire de Recherche - BST Binary Search Tree - Diagram drawn by graphviz - @PHLYPER\"");
 			dot.body.append("\tfontsize = 20");
 			print(dot.source);
 			print(dot.save("abr"));
